@@ -1,30 +1,97 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notizen App</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Meine Notizen-App</title>
     <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        input,
+        textarea,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .error {
+            color: red;
+            font-size: 1em;
+        }
+    </style>
 </head>
+
 <body>
-    <div id="app">
-        <h1>Notizen App</h1>
-        <input type="text" id="search" placeholder="Suchbegriff eingeben">
-        <textarea id="notes" placeholder="Schreibe deine Notizen hier..."></textarea>
+    <div class="container">
+        <h1>Meine Notizen-App</h1>
+
+        <!-- Eingabe für die Suche -->
+        <input type="text" id="searchInput" placeholder="Gib ein Stichwort ein..." />
+        <button id="searchBtn">Suche Notizen</button>
+
+        <!-- Eingabe für neue Notizen -->
+        <textarea id="noteInput" rows="5" placeholder="Füge eine neue Notiz hinzu..."></textarea>
+        <button id="addNoteBtn">Notiz hinzufügen</button>
+
+        <!-- Bereich für die Suchergebnisse -->
+        <div id="result" class="results"></div>
+
+        <!-- Fehlermeldung -->
+        <div id="error" class="error"></div>
     </div>
 
     <script src="script.js"></script>
-
-    <script>
-        // Service Worker registrieren
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                console.log('Service Worker registriert:', registration);
-            }).catch(error => {
-                console.log('Service Worker Registrierung fehlgeschlagen:', error);
-            });
-        }
-    </script>
 </body>
+
 </html>
