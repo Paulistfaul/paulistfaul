@@ -5,15 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notizen App</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <div class="app-container">
-        <input type="text" id="search-bar" placeholder="Frage oder Notiz suchen...">
-        <div id="notizen-container"></div>
-        <button id="add-note-btn">Notiz hinzufügen</button>
+    <div id="app">
+        <h1>Notizen App</h1>
+        <input type="text" id="search" placeholder="Suchbegriff eingeben">
+        <textarea id="notes" placeholder="Schreibe deine Notizen hier..."></textarea>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        // Service Worker registrieren
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                console.log('Service Worker registriert:', registration);
+            }).catch(error => {
+                console.log('Service Worker Registrierung fehlgeschlagen:', error);
+            });
+        }
+    </script>
 </body>
 </html>
